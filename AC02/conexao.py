@@ -21,6 +21,20 @@ def consulta():
 
     return base
 
+def atualizar(nome, novo_nome):
+
+    con = sqlite3.connect('cadastro_dados.db')
+
+    cur = con.cursor()
+
+    cur.execute("UPDATE funcionarios SET nome = '{nome}' WHERE nome = '{novo_nome}'")
+
+    con.commit()
+    cur.close()
+    con.close()
+
+    return 'update realizado'
+
 def gravar(nome, idade, senha):
 
     con = sqlite3.connect('cadastro_dados.db')
