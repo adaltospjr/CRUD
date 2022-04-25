@@ -9,8 +9,8 @@ def create():
     conexao.estrutura_banco()
     return 'banco criado'
 
-@app.route('/atualizar', methods=['POST', 'GET'])
-def atualizar():
+@app.route('/update', methods=['UPDATE'])
+def update():
     nome = request.form['nome']
     nome_novo = request.form['nome_novo']
 
