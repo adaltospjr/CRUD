@@ -7,16 +7,11 @@ app = Flask(__name__)
 @app.route('/create')
 def create():
     conexao.estrutura_banco()
-    return 'banco criado'
+    return 'Estrutura criada'
 
-@app.route('/update', methods=['UPDATE'])
+@app.route('/update', methods=['POST', 'GET'])
 def update():
-    nome = request.form['nome']
-    nome_novo = request.form['nome_novo']
-
-    conexao.atualizar(nome, nome_novo)
-
-    return 'registro atualizado'
+    pass
 
 @app.route('/')
 def main():
