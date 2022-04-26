@@ -21,20 +21,6 @@ def consulta():
 
     return base
 
-def atualizar(nome, novo_nome):
-
-    con = sqlite3.connect('cadastro_dados.db')
-
-    cur = con.cursor()
-
-    cur.execute("UPDATE funcionarios SET nome = '{nome}' WHERE nome = '{novo_nome}'")
-
-    con.commit()
-    cur.close()
-    con.close()
-
-    return 'update realizado'
-
 def gravar(nome, idade, senha):
 
     con = sqlite3.connect('cadastro_dados.db')
@@ -47,7 +33,7 @@ def gravar(nome, idade, senha):
 
     dados = cur.fetchall()
 
-    base = pd.DataFrame(dados, index=None, columns=['Nome', 
+    base = pd.DataFrame(dados, columns=['Nome', 
     'Idade', 
     'Senha'])
 
@@ -56,22 +42,6 @@ def gravar(nome, idade, senha):
     con.close()
 
     return 'OK'
-
-def delete(nome):
-
-    con = sqlite3.connect('cadastro_dados.db')
-
-    cur = con.cursor()
-
-    sql_delete_query = f"""DELETE from funcionarios where nome = '{nome}'"""
-
-    cur.execute(sql_delete_query)
-
-    con.commit()
-    cur.close()
-    con.close()
-
-    return 'Deletado'
 
 def estrutura_banco():
 
@@ -86,8 +56,3 @@ def estrutura_banco():
     con.close()
 
     return 'Estrutura criada com sucesso'
-
-#estrutura_banco()
-#print(gravar('Adalto', '28', '1234'))
-#delete('adalto')
-#print(consulta())

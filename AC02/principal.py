@@ -1,4 +1,3 @@
-from distutils.log import debug
 from flask import Flask, render_template, request
 import conexao
 
@@ -8,10 +7,6 @@ app = Flask(__name__)
 def create():
     conexao.estrutura_banco()
     return 'Estrutura criada'
-
-@app.route('/update', methods=['POST', 'GET'])
-def update():
-    pass
 
 @app.route('/')
 def main():
@@ -33,10 +28,5 @@ def gravar():
 def consultar():
     dados = conexao.consulta()
     return dados.to_html()
-
-@app.route('/delete')
-def delete():
-    nome = request.form['nome']
-    conexao.delete(nome)
 
 app.run(debug=True)
