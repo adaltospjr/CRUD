@@ -15,10 +15,10 @@ def main():
 @app.route('/gravar', methods=['POST', 'GET'])
 def gravar():
     nome = request.form['nome']
-    idade = request.form['idade']
-    senha = request.form['senha']
+    email = request.form['email']
+    endereco = request.form['endereco']
     
-    conexao.gravar(nome,idade,senha)
+    conexao.gravar(nome,email,endereco)
 
     dados = conexao.consulta()
 

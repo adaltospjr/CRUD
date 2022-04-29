@@ -13,29 +13,29 @@ def consulta():
     dados = cur.fetchall()
 
     base = pd.DataFrame(dados, columns=['Nome', 
-    'Idade', 
-    'Senha'])
+    'email', 
+    'endereco'])
 
     cur.close()
     con.close()
 
     return base
 
-def gravar(nome, idade, senha):
+def gravar(nome, email, endereco):
 
     con = sqlite3.connect('cadastro_dados.db')
 
     cur = con.cursor()
 
-    cur.execute("""INSERT INTO funcionarios (nome, idade, senha)VALUES (?,?,?)""", (nome, idade, senha))
+    cur.execute("""INSERT INTO funcionarios (nome, email, endereco)VALUES (?,?,?)""", (nome, email, endereco))
 
     cur.execute('select * from funcionarios')
 
     dados = cur.fetchall()
 
     base = pd.DataFrame(dados, columns=['Nome', 
-    'Idade', 
-    'Senha'])
+    'email', 
+    'endereco'])
 
     con.commit()
     cur.close()
@@ -49,7 +49,7 @@ def estrutura_banco():
 
     cur = con.cursor()
 
-    cur.execute('''CREATE TABLE funcionarios (nome text, idade text, senha text)''')
+    cur.execute('''CREATE TABLE funcionarios (nome text, email text, endereco text)''')
 
     con.commit()
     cur.close()
